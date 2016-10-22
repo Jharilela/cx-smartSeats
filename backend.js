@@ -63,13 +63,13 @@ app.post('/addPassenger', function(req,res){
 	   data.passengerSeats.push(dataReceived);
 	   console.log('new data')
 	   console.log(data)
-	   // console.log("Let's write newly written data");
-	   // fs.writeFile('input.txt', 'Simply Easy Learning!',  function(err) {
-	   //    if (err) {
-	   //       return console.error(err);
-	   //    }
+	   console.log("Let's write newly written data");
+	   fs.writeFile(__dirname + "/" + "seatBookings.json", data,  function(err) {
+	      if (err) {
+	         return console.error(err);
+	      }
 	      
-	   // });
+	   });
 	});
 
 	res.end("data received")
