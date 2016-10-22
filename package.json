@@ -1,0 +1,19 @@
+{
+  "name": "cx-smartseats",
+  "version": "1.0.0",
+  "description": "allocate seats to flight passengers based on their personal preference",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jharilela/cx-smartSeats.git"
+  },
+  "author": "Jayant Harilela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jharilela/cx-smartSeats/issues"
+  },
+  "homepage": "https://github.com/Jharilela/cx-smartSeats#readme"
+}
