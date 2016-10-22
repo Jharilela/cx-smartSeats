@@ -16,7 +16,7 @@
 			{
 				$.each(allData.data,function(index,element)
 				{
-					flightArray.push('<li> <a href= "example.html?seatCapacity=' + element.seatCapacity+'">'+"Flight Number: "+ element.flightNumber+" Departure Time: "+element.scheduledDepartureTime+ " Arrival Time: "+element.scheduledDepartureTime+" Seat Capacity: "+element.seatCapacity+'</a></li>');
+					flightArray.push('<li> <a href= "aeroplane.html?seatCapacity=' + element.seatCapacity+'">'+"Flight Number: "+ element.flightNumber+" Departure Time: "+element.scheduledDepartureTime+ " Arrival Time: "+element.scheduledDepartureTime+" Seat Capacity: "+element.seatCapacity+'</a></li>');
 					$("#flightList").append( flightArray.join('') );
 				});
 			});

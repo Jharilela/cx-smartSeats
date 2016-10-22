@@ -5,10 +5,25 @@
 
 		<script type="text/javascript" src="seats.js"></script>
 		<script type="text/javascript" src="Queue.js"></script>
+		<script >
+			function getUrlVars()
+			{
+			    var vars = [], hash;
+			    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			    for(var i = 0; i < hashes.length; i++)
+			    {
+			        hash = hashes[i].split('=');
+			        vars.push(hash[0]);
+			        vars[hash[0]] = hash[1];
+			    }
+			    return vars;
+
+			}
+			console.log(parseInt(getUrlVars().seatCapacity));
+		</script>
 	</head>
 
-	<body onload='loadValue("2-4-2", 160);'>
-
+	<body onload='loadValue("2-4-2", parseInt(getUrlVars().seatCapacity));'>
 		<p align="center">
 		<!-- <button type="button" onClick="loadValue();">loadValue</button>	 -->
 		<input type="radio" name="pref" id="talk" onclick="talkPref()">Talk</input>
