@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+<script>
+	$(document).ready(function(){
+		$("#submit").click(function()
+		{
+			var params = { "carrierCode":document.getElementById("carrierCode").value, "flightNumber":document.getElementById("flightNumber").value,"legOriginAirport":document.getElementById("legOriginAirport").value,"legDestinationAirport":document.getElementById("legDestinationAirport").value,"scheduledArrivalTimeMax":document.getElementById("scheduledArrivalTimeMax").value,"scheduledDepartureTimeMin":document.getElementById("scheduledDepartureTimeMin").value};
+			console.log(document.getElementById("scheduledDepartureTimeMin").value);
+			var flightArray=[];
+			var new_url = "http://52.27.248.59/api/v0/schedule/records?" + $.param(params);
+			$.getJSON(new_url,function(allData)
+			{
+				$.each(allData.data,function(index,element)
+				{
+					flightArray.push("<li>"+"Flight Number: "+ element.flightNumber+" Departure Time: "+element.scheduledDepartureTime+ " Arrival Time: "+element.scheduledDepartureTime+" Seat Capacity: "+element.seatCapacity+"</li>");
+					$("#flightList").append( flightArray.join('') );
+				});
+			});
+		});
+	});
+</script>
+
+<title>Flight Details</title>
+</head>
+<body>
+<form>
+	Carrier code <input type= "text" id="carrierCode"><br>
+	Flight number<input type= "number" id="flightNumber"><br>
+	Scheduled Arrival Time Max<input type= "datetime-local" id="scheduledArrivalTimeMax"><br>
+	Scheduled Departure Time Min<input type="datetime-local" id="scheduledDepartureTimeMin"><br>
+	Origin airport <input type="text" id="legOriginAirport"><br>
+	Dest airport  <input type="text" id="legDestinationAirport"><br>
+	<button type="button" id="submit">SUBMIT</button>
+	<ol id="flightList"></ol>
+</form>
+
+</body>
