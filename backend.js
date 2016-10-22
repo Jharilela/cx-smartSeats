@@ -44,29 +44,30 @@ app.get('/getSeatBookings', function (req, res) {
 })
 
 app.post('/addPassenger', function(req,res){
-	var dataReceived = JSON.parse(req.query);
+	var dataReceived = req.query;
 	console.log(dataReceived)
 
-	// fs.readFile(__dirname + "/" + "seatBookings.json", 'utf8', function (err, data) {
-	//    if (err) {
-	//       return console.error(err);
-	//    }
-	//    console.log("Asynchronous read: " + typeof data + " -> ");
-	//    console.log(data)
+	fs.readFile(__dirname + "/" + "seatBookings.json", 'utf8', function (err, data) {
+	   if (err) {
+	      return console.error(err);
+	   }
+	   data = JSON.parse(data)
+	   console.log("Asynchronous read: " + typeof data + " -> ");
+	   console.log(data)
 
-	//    console.log("Data read successfully!, adding data");
+	   console.log("Data read successfully!, adding data");
 
-	//    var newData = data.passengerSeats.push(dataReceived);
-	//    console.log('new data')
-	//    console.log(newData)
-	//    // console.log("Let's write newly written data");
-	//    // fs.writeFile('input.txt', 'Simply Easy Learning!',  function(err) {
-	//    //    if (err) {
-	//    //       return console.error(err);
-	//    //    }
+	   // var newData = data.passengerSeats.push(dataReceived);
+	   // console.log('new data')
+	   // console.log(newData)
+	   // console.log("Let's write newly written data");
+	   // fs.writeFile('input.txt', 'Simply Easy Learning!',  function(err) {
+	   //    if (err) {
+	   //       return console.error(err);
+	   //    }
 	      
-	//    // });
-	// });
+	   // });
+	});
 
 	res.end("data received")
 })
