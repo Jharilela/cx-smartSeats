@@ -31,9 +31,8 @@ app.use(function (req, res, next) {
 
 app.get('/getSeatBookings', function (req, res) {
    fs.readFile( __dirname + "/" + "seatBookings.json", 'utf8', function (err, data) {
-   	  //var dats = JSON.parse( data )
-   	  console.log('dats[1]')
-      console.log( data );
+   	  console.log('params')
+   	  console.log(req.query)
       res.writeHead(200, {'Content-Type' : 'text/plain'});
       res.end( data );
    });
