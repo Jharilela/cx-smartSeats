@@ -1,7 +1,9 @@
 var rows, cols, counter;
 rows = 10;    																		//default number of rows
-cols = 15;																			//default number of columns
-counter=1;	 																		//starting number for seat allocation
+cols = 20;																			//default number of columns
+counter=1;
+var visiblePartStart = 1;
+var visiblePartEnd = 15;	 																		//starting number for seat allocation
 var enabled = [];       															// array to store the seats chosen by user
 var editable =false;   															    // determines whether buttons can be pressed or not
 var changed=false;																	// determines whether seats orientation has been modified from the default
@@ -26,7 +28,19 @@ function loadValue(a, b){
 	console.log('a : ' + a);
 	console.log('b : '+ b);
 	var sum=0;
-	var blocksPerRow = 0;
+	var seatsPerColumn = 0;
+
+	for (var i = 0; i<a.length;i++){
+		var character = a.charAt(i)
+		if(character != "-"){
+			seatsPerColumn+=parseInt(character)
+		}
+	}
+
+	var columns = Math.round(b/seatsPerColumn);
+	console.log('total columns = '+columns)
+	cols = columns;
+	createTable();
 
 	for (var i = 0; i<a.length;i++){
 		var character = a.charAt(i)
@@ -36,8 +50,8 @@ function loadValue(a, b){
 		}
 		else{
 			sum+=parseInt(character);
+			seatsPerColumn+=parseInt(character)
 			console.log('sum : '+sum)
-
 		}
 	}
 }
@@ -244,7 +258,12 @@ function removePrePostText(){													// function to check if seats has been
 	document.getElementById("postTable").innerHTML ="";
 	}
 }
-
+function seeLeft(){
+	console.log('seeing left')
+}
+function seeRight(){
+	console.log('seeing right')
+}
 
 
 function reset()																//rebuild the table
