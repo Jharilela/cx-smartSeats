@@ -53,13 +53,13 @@ app.post('/addPassenger', function(req,res){
 	   }
 	   data = JSON.parse(data)
 	   console.log("Asynchronous read: " + typeof data + " -> ");
-	   console.log(data.passengerSeats)
+	   console.log(data.passengerSeats[0])
 
 	   console.log("Data read successfully!, adding data");
 
-	   var newData = data.passengerSeats.push(dataReceived);
+	   data.passengerSeats.push(dataReceived);
 	   console.log('new data')
-	   console.log(newData)
+	   console.log(data)
 	   // console.log("Let's write newly written data");
 	   // fs.writeFile('input.txt', 'Simply Easy Learning!',  function(err) {
 	   //    if (err) {
