@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title> Aeroplane </title>
-
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 		<script type="text/javascript" src="seats.js"></script>
 		<script type="text/javascript" src="Queue.js"></script>
+		<title> Aeroplane </title>
 		<script >
 			function getUrlVars()
 			{
@@ -24,21 +24,29 @@
 	</head>
 
 	<body onload='loadValue("2-4-2", parseInt(getUrlVars().seatCapacity));'>
-		<p align="center">
 		<!-- <button type="button" onClick="loadValue();">loadValue</button>	 -->
-		<input type="radio" name="pref" id="talk" onclick="talkPref()">Talk</input>
-		<input type="radio" name="pref" id="sleep" onclick="sleepPref()">Sleep</input>
-		<input type="radio" name="pref" id="none"onclick="nonePref()">None</input>
+		<div class="row">
+		<div class="col m4 teal lighten-4" style="height:100vh;">
+		<p >Please select your seating preferences</p>
+		<form action="#">
+		<p>
+		<input name="group1" type="radio" id="talk" onclick="talkPref()"/>
+		<label  for="talk">I would like to talk</label>
 		</p>
-
-		<p align="center" id="insert">
+		<p>
+		<input name="group1" type="radio" id="sleep" onclick="sleepPref()"/>
+		<label  for="sleep">I would like to sleep</label>
 		</p>
-
-		<p align="center" id="preTable">
+		<p>
+		<input name="group1" type="radio" id="none" onclick="nonePref()"/>
+		<label  for="none">No Preferences</label>
 		</p>
+		</div>
+		</form>
+		<div class="col m8">
 		<p align="center" id="table">														<!-- where the table is inserted-->
 		</p>
-		<p align="center" id="postTable">
-		</p>
+		</div>
+		</div>
 	</body>
 <html>
