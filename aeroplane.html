@@ -4,18 +4,16 @@
 		<title> Aeroplane </title>
 
 		<script type="text/javascript" src="seats.js"></script>
+		<script type="text/javascript" src="Queue.js"></script>
 	</head>
 
-	<body onload='loadValue("2-4-2", 370);'>
+	<body onload='loadValue("2-4-2", 160);'>
 
 		<p align="center">
 		<!-- <button type="button" onClick="loadValue();">loadValue</button>	 -->
 		<input type="radio" name="pref" id="talk" onclick="talkPref()">Talk</input>
 		<input type="radio" name="pref" id="sleep" onclick="sleepPref()">Sleep</input>
-		<input type="radio" name="pref" id="baby" onclick="babyPref()">Baby</input>
 		<input type="radio" name="pref" id="none"onclick="nonePref()">None</input>
-		<button onclick = "seeLeft()"><</button>
-		<button onclick="seeRight()">></button>
 		</p>
 
 		<p align="center" id="insert">

@@ -54,6 +54,7 @@ function loadValue(a, b){
 			console.log('sum : '+sum)
 		}
 	}
+	document.getElementById(""+4+","+4+"").innerText='B';
 }
 
 function ifButtonIsPressed()													//this function is loaded when the user clicks on any button while choosing seats for the new table
@@ -329,28 +330,88 @@ function getAvailable(start,end){
 		}
 	return 0;
 }
-function babyPref(){
-	console.log('Baby');
-	var exp=getAvailable(1,cols/3);
-	fade();
-	hightlight(1,(cols/3)+exp);
-}
 
 function talkPref(){
 	console.log('talk');
-	var exp=getAvailable(cols/3,cols*2/3);
-	fade();
-	hightlight(cols*1/3,exp+(cols*2/3));
-}
-
-function sleepPref(){
-	console.log('sleep');
-	var exp=getAvailable(cols*2/3,cols);
-	fade();
-	hightlight(cols*2/3,cols+exp);
+	createMap();
+	for(var i=1; i<11; i++)
+		for(var j=1; j<21; j++)
+		{
+			console.log (' outpt '+i +'		'+j);
+			document.getElementById(""+i+","+j+"").innerText==M[i][j];
+		}
 }
 
 function nonePref(){
 	console.log('None');
 	hightlight(1,cols);
+}
+
+
+var V=new Array(rows+1), M=new Array(rows+1);
+for(var temp=0; temp<rows+1; temp++){
+	V[temp]=new Array(cols+1);
+	M[temp]=new Array(cols+1);
+}
+
+function start(){
+	for(var i=0; i<11; i++)
+		for(var j=0; j<21; j++)
+			M[i][j]=0;
+}
+
+function resetVisited(){
+	console.log(rows + '	' + cols);
+	for(var i=1; i<11; i++)
+		for(var j=1; j<21; j++){
+			//console.log(i +'	'+j);
+				V[i][j]=0;
+		}
+}
+
+//code.stephenmorley.org
+function Queue(){var a=[],b=0;this.getLength=function(){return a.length-b};this.isEmpty=function(){return 0==a.length};this.enqueue=function(b){a.push(b)};this.dequeue=function(){if(0!=a.length){var c=a[b];2*++b>=a.length&&(a=a.slice(b),b=0);return c}};this.peek=function(){return 0<a.length?a[b]:void 0}};
+
+var q1=new Queue(), q2=new Queue(), d;
+function createMap(){
+	for(var i=1; i<11; i++)
+		for(var j=1; j<21; j++){
+			//console.log( i + '	' + j);
+			if(document.getElementById(""+i+","+j+"").innerText == 'B')
+			{
+				resetVisited();
+				M[i][j]+=6;
+				q1.enqueue(i);
+				q2.enqueue(j);
+				d=5;
+				q1.enqueue(0);
+				map();
+			}
+		}
+}
+
+function map(){
+	var i=q1.dequeue();
+	var j=q2.dequeue();
+	console.log(i+'		'+j);
+	var row = [-1, -1, -1,  0, 0,  1, 1, 1];
+  var col = [-1,  0,  1, -1, 1, -1, 0, 1];
+	for (var k = 0; k < 8; k++)
+        if (Check(i + row[k], j + col[k])){
+					M[i + row[k]][j+col[k]]=d;
+					q1.enqueue(i + row[k]);
+					q2.enqueue(j+col[k]);
+				}
+	if(d==0)
+		return;
+	if(q1.peek()==0){
+		d--;
+		q1.dequeue();
+		q1.enqueue(0);
+	}
+	map();
+}
+
+function Check(i,j){
+	return (i >= 0) && (i < rows) && (j >= 0) && (j < cols) && (!V[i][j]);
 }
