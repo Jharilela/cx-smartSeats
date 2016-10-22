@@ -1,5 +1,5 @@
 var rows, cols, counter;
-rows = 4;    																		//default number of rows
+rows = 6;    																		//default number of rows
 cols = 15;																			//default number of columns
 counter=1;	 																		//starting number for seat allocation
 var enabled = [];       															// array to store the seats chosen by user
@@ -16,7 +16,7 @@ if(document.getElementById("rowsInput").value>0&&document.getElementById("colsIn
 	editable=true; 																// allow the user to choose the seats
 	document.getElementById("rowsInput").disabled=true;
 	document.getElementById("colsInput").disabled=true;
-	rows=document.getElementById("rowsInput").value;  							//sets the rows 
+	rows=document.getElementById("rowsInput").value;  							//sets the rows
 	cols=document.getElementById("colsInput").value;  							// sets the cols
 	changed=true;
 	reset();   																	// rebuilds the table
@@ -26,7 +26,7 @@ if(document.getElementById("rowsInput").value>0&&document.getElementById("colsIn
 
 function ifButtonIsPressed()													//this function is loaded when the user clicks on any button while choosing seats for the new table
 {
-if(editable==true)																
+if(editable==true)
 {
 if(document.getElementById(temp).style.backgroundColor=="gray")					//if the seat has not been selected yet, the seat turns white when pressed
 	{
@@ -35,9 +35,9 @@ if(document.getElementById(temp).style.backgroundColor=="gray")					//if the sea
 	}
 else if(document.getElementById(temp).style.backgroundColor=="white")			//if the seat has been selected before, the seat turns gray when pressed
 	{
-	document.getElementById(temp).style.backgroundColor="gray";					
-	var index = enabled.indexOf(temp);	
-	if (index > -1) 
+	document.getElementById(temp).style.backgroundColor="gray";
+	var index = enabled.indexOf(temp);
+	if (index > -1)
 		{
 	   	     enabled.splice(index, 1);												//we remove this seat number from the array consisting of selected seats
 		}
@@ -67,7 +67,7 @@ document.getElementById("insert").innerHTML+=('<br><button onClick="insertInput(
 
 function createTable()															//creates the table
 {
-document.getElementById("table").innerHTML +="<p align='center'><br>";			
+document.getElementById("table").innerHTML +="<p align='center'><br>";
 document.getElementById("table").innerHTML +="<table>";
 for(var i=1;i<=rows;i++)
 	{
@@ -80,9 +80,9 @@ for(var i=1;i<=rows;i++)
 		document.getElementById("table").innerHTML +="</td>";
 																				//creates a button with fixed size. When clicked, it loads ifButtonIsPress()
 		document.getElementById(""+i+","+j+"").disabled = false;
-		if(editable==true||changed==true)										//if the user has created a new table, the seats are gray in color 
+		if(editable==true||changed==true)										//if the user has created a new table, the seats are gray in color
 		document.getElementById(""+i+","+j+"").style.backgroundColor ="gray";
-		else																	// if we are creating a default table, the seats are gray in color 
+		else																	// if we are creating a default table, the seats are gray in color
 		document.getElementById(""+i+","+j+"").style.backgroundColor ="white";
 		}
 	document.getElementById("table").innerHTML +="</tr><br>";
@@ -96,13 +96,13 @@ document.getElementById("table").innerHTML +="</p>";
 function chooseArea()															//enables selected seats by the user and makes them visible
 {
 
-if(changed==false)																//checks if seat orientation has noot been modified
+if(false)																//checks if seat orientation has noot been modified
 	{
-	enabled=["1,1","1,2","1,3","1,5","1,6","1,7","1,8","1,10","1,11","1,13","1,14","1,15"      
+	enabled=["1,1","1,2","1,3","1,5","1,6","1,7","1,8","1,10","1,11","1,13","1,14","1,15"
 	,"2,1","2,2","2,3","2,5","2,6","2,7","2,8","2,10","2,11","2,13","2,14","2,15"
 	,"3,5","3,6","3,7","3,8","3,10","3,11","3,13","3,14","3,15"
 	,"4,13","4,14","4,15"];														//this array contains seat layout as displayed in the interview
-	
+
 	for(var i=1;i<=rows;i++)													// this for loop is responsible for the rows of the table
 		{
 		for(var j=1;j<=cols;j++)												// this for loop is responsible for the columns of the table
@@ -123,7 +123,7 @@ if(changed==false)																//checks if seat orientation has noot been mod
 				}
 			}
 		}
-	
+
 	}
 else if(enabled.length>0)														//checks if the user have selected more than zero seats
 {
@@ -150,8 +150,8 @@ else if(enabled.length>0)														//checks if the user have selected more t
 }
 else																			//checks if the user has not selected any seats
 	{
-	document.getElementById("preTable").innerHTML ="Choose allowable seats<br>"
-	document.getElementById("postTable").innerHTML ="<button onClick='chooseArea();removePrePostText();'>ok</button>";
+	//document.getElementById("preTable").innerHTML ="Choose allowable seats<br>"
+	//document.getElementById("postTable").innerHTML ="<button onClick='chooseArea();removePrePostText();'>ok</button>";
 	}
 
 }
@@ -160,13 +160,13 @@ else																			//checks if the user has not selected any seats
 function add()																	//allocates a passanger to a seat
 {
 	var found = false;															// variable to determine whether a seat has been assigned to the counter
-	
+
 	for (var loop=1;loop<=3 && found==false;loop++)
 	{
 	//loop 1: assign isle seats
 	//loop 2: assign window seats
 	//loop 3: assign middle seats
-	
+
 		for(var i=1;i<=rows && found==false;i++)								//This loop is responsible for the rows
 		{
 			for (var j=1;j<=cols && found==false;j++)							// This loop is responsible for the cols
@@ -175,8 +175,8 @@ function add()																	//allocates a passanger to a seat
 				if((""+document.getElementById(""+i+","+j+"").textContent )==' '            //checks if the button contains any number already
 				&& document.getElementById(""+i+","+j+"").style.visibility=="visible") 		//checks if it is visible
 					{
-					if(loop==1																//conditions for isle seats						
-					&&(j>1&&j<cols)																
+					if(loop==1																//conditions for isle seats
+					&&(j>1&&j<cols)
 					&&((""+document.getElementById(""+i+","+(j+1)+"").style.visibility=="hidden")||(""+document.getElementById(""+i+","+(j-1)+"").style.visibility=="hidden"))
 					)
 						{
@@ -186,18 +186,18 @@ function add()																	//allocates a passanger to a seat
 							counter++;																		// add one to the counter
 							found=true;																		//exits the loop
 							break;
-			
+
 						}
-						
+
 					else if (loop==2 && (j==1 || j==cols))
 						{
 							//yes this is a window seat
-							document.getElementById(""+i+","+j+"").textContent  =counter;		
+							document.getElementById(""+i+","+j+"").textContent  =counter;
 							document.getElementById(""+i+","+j+"").style.backgroundColor='#80ff80';
 							counter++;
 							found=true;
 							break;
-			
+
 						}
 					else if(loop==3)
 						{
@@ -227,7 +227,7 @@ function removePrePostText(){													// function to check if seats has been
 
 
 
-function reset()																//rebuild the table 
+function reset()																//rebuild the table
 {
 	document.getElementById("table").innerHTML ="";
 	document.getElementById("preTable").innerHTML ="";
