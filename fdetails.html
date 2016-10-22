@@ -5,6 +5,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
 </script>
 <script>
+	var seatBookingsUrl = "http://35.160.243.26:8080/getSeatBookings"
+	$.getJSON(seatBookingsUrl,function(data){
+		console.log('data ', data)
+	})
 	$(document).ready(function(){
 		$("#submit").click(function()
 		{
