@@ -64,7 +64,7 @@ app.post('/addPassenger', function(req,res){
 	   console.log('new data')
 	   console.log(data)
 	   console.log("Let's write newly written data");
-	   fs.writeFile(__dirname + "/" + "seatBookings.json", data,  function(err) {
+	   fs.writeFile(__dirname + "/" + "seatBookings.json", JSON.stringify(data),  function(err) {
 	      if (err) {
 	         return console.error(err);
 	      }
