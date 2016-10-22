@@ -1,16 +1,17 @@
 {
-   "array" : [{
-      "seat" : "1,1", 
-	   "prefference" : "talking"
-   },
-   
-   {
-      "seat" : "5,5",
-	   "prefference" : "talking",
-   },
-   
-   {
-      "seat" : "7,12",
-	   "prefference" : "quiet"
-   }]
+	"array": [{
+			"seat": "1,1",
+			"talking": true
+		},
+
+		{
+			"seat": "5,5",
+			"talking": true
+		},
+
+		{
+			"seat": "7,12",
+			"talking": false
+		}
+	]
 }
