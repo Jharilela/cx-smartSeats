@@ -44,7 +44,7 @@ app.get('/getSeatBookings', function (req, res) {
 })
 
 app.post('/addPassenger', function(req,res){
-	var dataReceived = req.body;
+	var dataReceived = req.query;
 	console.log('dataReceived')
 	console.log(dataReceived)
 	res.end("data received")
