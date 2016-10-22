@@ -1,0 +1,16 @@
+{
+   "array" : [{
+      "seat" : "1,1", 
+	   "prefference" : "talking"
+   },
+   
+   {
+      "seat" : "5,5",
+	   "prefference" : "talking",
+   },
+   
+   {
+      "seat" : "7,12",
+	   "prefference" : "quiet"
+   }]
+}

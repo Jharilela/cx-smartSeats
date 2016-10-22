@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+<script>
+	$(document).ready(function(){
+		$("#submit").click(function()
+		{
+			var params = { "carrierCode":document.getElementById("carrierCode").value, "flightNumber":document.getElementById("flightNumber").value,"legOriginAirport":document.getElementById("legOriginAirport").value,"legDestinationAirport":document.getElementById("legDestinationAirport").value,"scheduledArrivalTimeMax":document.getElementById("scheduledArrivalTimeMax").value,"scheduledDepartureTimeMin":document.getElementById("scheduledDepartureTimeMin").value};
+			console.log(document.getElementById("scheduledDepartureTimeMin").value);
+			var flightArray=[];
+			var new_url = "http://52.27.248.59/api/v0/schedule/records?" + $.param(params);
+			$.getJSON(new_url,function(allData)
+			{
+				$.each(allData.data,function(index,element)
+				{
+					flightArray.push('<li> <a href= "example.html?seatCapacity=' + element.seatCapacity+'">'+"Flight Number: "+ element.flightNumber+" Departure Time: "+element.scheduledDepartureTime+ " Arrival Time: "+element.scheduledDepartureTime+" Seat Capacity: "+element.seatCapacity+'</a></li>');
+					$("#flightList").append( flightArray.join('') );
+				});
+			});
+		});
+	});
+</script>
+
+<title>Flight Details</title>
+</head>
+<body>
+<form>
+	<div class="form-group">
+	<label>Carrier code</label><br>
+	<input type= "text" id="carrierCode">
+	</div>
+	<div class="form-group">
+	<label>Flight number</label><br>
+	<input type= "number" id="flightNumber">
+	</div>
+	<div class="form-group">
+	<label>Scheduled Arrival Time Max</label><br>
+	<input type= "datetime-local" id="scheduledArrivalTimeMax">
+	</div>ari
+	<div class="form-group">
+	<label>Scheduled Departure Time Min</label><br>
+	<input type="datetime-local" id="scheduledDepartureTimeMin">
+	</div>
+	<div class="form-group">
+	<label>Origin airport</label> <br>
+	<input type="text" id="legOriginAirport">
+	</div>
+	<div class="form-group">
+	<label>Dest airport</label><br>
+	<input type="text" id="legDestinationAirport">
+	</div>
+	</form>
+	<button class="btn-primary" id="submit">SUBMIT</button>
+	<ol id="flightList"></ol>
+</body>
