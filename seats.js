@@ -1,5 +1,5 @@
 var rows, cols, counter;
-rows = 6;    																		//default number of rows
+rows = 10;    																		//default number of rows
 cols = 15;																			//default number of columns
 counter=1;	 																		//starting number for seat allocation
 var enabled = [];       															// array to store the seats chosen by user
@@ -21,7 +21,25 @@ if(document.getElementById("rowsInput").value>0&&document.getElementById("colsIn
 	changed=true;
 	reset();   																	// rebuilds the table
 	}
+}
+function loadValue(a, b){
+	console.log('a : ' + a);
+	console.log('b : '+ b;)
+	var sum=0;
+	var blocksPerRow = 0;
 
+	for (var i = 0; i<a.length;i++){
+		var character = a.charAt(i)
+		if(character == "-"){
+			sum++;
+			removeRow(sum)
+		}
+		else{
+			sum+=parseInt(character);
+			console.log('sum : '+sum)
+			
+		}
+	}
 }
 
 function ifButtonIsPressed()													//this function is loaded when the user clicks on any button while choosing seats for the new table
@@ -100,7 +118,7 @@ if(false)																//checks if seat orientation has noot been modified
 	{
 	enabled=["1,1","1,2","1,3","1,5","1,6","1,7","1,8","1,10","1,11","1,13","1,14","1,15"
 	,"2,1","2,2","2,3","2,5","2,6","2,7","2,8","2,10","2,11","2,13","2,14","2,15"
-	,"3,5","3,6","3,7","3,8","3,10","3,11","3,13","3,14","3,15"
+	,"3,5","3,6","3,7","3,8","3,10","3,11","3,12","3,13","3,14","3,15"
 	,"4,13","4,14","4,15"];														//this array contains seat layout as displayed in the interview
 
 	for(var i=1;i<=rows;i++)													// this for loop is responsible for the rows of the table
@@ -152,8 +170,8 @@ else																			//checks if the user has not selected any seats
 	{
 	//document.getElementById("preTable").innerHTML ="Choose allowable seats<br>"
 	//document.getElementById("postTable").innerHTML ="<button onClick='chooseArea();removePrePostText();'>ok</button>";
-	removeRow(2);
-	console.log('Else 3');
+	//removeRow(2);
+	//console.log('Else 3');
 	}
 
 }

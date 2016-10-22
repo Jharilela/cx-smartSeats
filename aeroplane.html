@@ -6,12 +6,10 @@
 		<script type="text/javascript" src="seats.js"></script>
 	</head>
 
-	<body onload='createTable();chooseArea("default");'>
+	<body onload='createTable();loadValue("2-4-2", 370);'>
 
 		<p align="center">
-		<!--<button type="button" onClick="add();">+</button>									<!-- adds a passanger to the seat-->
-		<!--<button type="button" onClick="insertWindow();">New</button>						<!-- creates a new table and allow the user to choose seats within the aircraft-->
-		<!--<button type="button" onClick="reset();">Reset</button>								<!-- resets the table to its original layout--> 
+		<button type="button" onClick="loadValue();">loadValue</button>	
 		</p>
 
 		<p align="center" id="insert">
