@@ -57,9 +57,9 @@ app.post('/addPassenger', function(req,res){
 
 	   console.log("Data read successfully!, adding data");
 
-	   // var newData = data.passengerSeats.push(dataReceived);
-	   // console.log('new data')
-	   // console.log(newData)
+	   var newData = data.passengerSeats.push(dataReceived);
+	   console.log('new data')
+	   console.log(newData)
 	   // console.log("Let's write newly written data");
 	   // fs.writeFile('input.txt', 'Simply Easy Learning!',  function(err) {
 	   //    if (err) {
