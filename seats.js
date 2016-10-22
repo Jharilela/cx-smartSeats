@@ -123,7 +123,6 @@ if(false)																//checks if seat orientation has noot been modified
 				}
 			}
 		}
-
 	}
 else if(enabled.length>0)														//checks if the user have selected more than zero seats
 {
@@ -147,11 +146,14 @@ else if(enabled.length>0)														//checks if the user have selected more t
 				}
 			}
 		}
+		removeRow(2);
 }
 else																			//checks if the user has not selected any seats
 	{
 	//document.getElementById("preTable").innerHTML ="Choose allowable seats<br>"
 	//document.getElementById("postTable").innerHTML ="<button onClick='chooseArea();removePrePostText();'>ok</button>";
+	removeRow(2);
+	console.log('Else 3');
 	}
 
 }
@@ -244,4 +246,13 @@ function reset()																//rebuild the table
 function print()
 {
 alert(enabled.length);
+}
+
+
+function removeRow(r){
+	console.log('Remove');
+	for(var i=1;i<=cols;i++){												// this for loop is responsible for the columns of the table
+			document.getElementById(""+r+","+i+"").disabled =true;
+			document.getElementById(""+r+","+i+"").style.visibility="hidden";
+		}
 }
