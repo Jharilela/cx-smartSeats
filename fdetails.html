@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
 </script>
 <script>
@@ -16,7 +16,7 @@
 			{
 				$.each(allData.data,function(index,element)
 				{
-					flightArray.push('<li> <a href= "aeroplane.html?seatCapacity=' + element.seatCapacity+'">'+"Flight Number: "+ element.flightNumber+" Departure Time: "+element.scheduledDepartureTime+ " Arrival Time: "+element.scheduledDepartureTime+" Seat Capacity: "+element.seatCapacity+'</a></li>');
+					flightArray.push('<li class="collection-item"> <a href= "aeroplane.html?seatCapacity=' + element.seatCapacity+'">'+"Flight Number: "+ element.flightNumber+" Departure Time: "+element.scheduledDepartureTime+ " Arrival Time: "+element.scheduledDepartureTime+" Seat Capacity: "+element.seatCapacity+'</a></li>');
 					$("#flightList").append( flightArray.join('') );
 				});
 			});
@@ -28,31 +28,43 @@
 </head>
 <body>
 <form>
-	<div class="form-group">
+	<div class="row">
+	<div class="input-field col m6">
 	<label>Carrier code</label><br>
 	<input type= "text" id="carrierCode">
 	</div>
-	<div class="form-group">
+	<div class="input-field col m6">
 	<label>Flight number</label><br>
 	<input type= "number" id="flightNumber">
 	</div>
-	<div class="form-group">
+	</div>
+	<div class="row">
+	<div class="input-field col m6">
 	<label>Scheduled Arrival Time Max</label><br>
 	<input type= "datetime-local" id="scheduledArrivalTimeMax">
-	</div>ari
-	<div class="form-group">
+	</div>
+	<div class="input-field col m6">
 	<label>Scheduled Departure Time Min</label><br>
 	<input type="datetime-local" id="scheduledDepartureTimeMin">
 	</div>
-	<div class="form-group">
-	<label>Origin airport</label> <br>
+	</div>
+	<div class="row">
+	<div class="input-field col m6">
+	<label>Origin airport</label><br>
 	<input type="text" id="legOriginAirport">
 	</div>
-	<div class="form-group">
+	<div class="input-field col m6">
 	<label>Dest airport</label><br>
 	<input type="text" id="legDestinationAirport">
 	</div>
+	</div>
 	</form>
+	<div class="row">
+	<div class="col m6">
 	<button class="btn-primary" id="submit">SUBMIT</button>
-	<ol id="flightList"></ol>
+	</div>
+	</div>
+	<ul id="flightList" class="collection with-header">
+		<li class="collection-header"><h4>Flights</h4></li>
+	</ul>
 </body>
