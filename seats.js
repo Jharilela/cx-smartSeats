@@ -25,8 +25,9 @@ if(document.getElementById("rowsInput").value>0&&document.getElementById("colsIn
 	}
 }
 function loadValue(a, b){
-	console.log('a : ' + a);
-	console.log('b : '+ b);
+	start();
+	//console.log('a : ' + a);
+	//console.log('b : '+ b);
 	var sum=0;
 	var seatsPerColumn = 0;
 
@@ -51,10 +52,16 @@ function loadValue(a, b){
 		else{
 			sum+=parseInt(character);
 			seatsPerColumn+=parseInt(character)
-			console.log('sum : '+sum)
+			//console.log('sum : '+sum)
 		}
 	}
 	document.getElementById(""+4+","+4+"").innerText='B';
+	document.getElementById(""+4+","+4+"").style.backgroundColor="gray";
+	document.getElementById(""+4+","+2+"").innerText='B';
+	document.getElementById(""+4+","+2+"").style.backgroundColor="gray";
+	document.getElementById(""+5+","+5+"").innerText='B';
+	document.getElementById(""+5+","+5+"").style.backgroundColor="gray";
+
 }
 
 function ifButtonIsPressed()													//this function is loaded when the user clicks on any button while choosing seats for the new table
@@ -260,10 +267,10 @@ function removePrePostText(){													// function to check if seats has been
 	}
 }
 function seeLeft(){
-	console.log('seeing left')
+	//console.log('seeing left')
 }
 function seeRight(){
-	console.log('seeing right')
+	//console.log('seeing right')
 }
 
 
@@ -288,7 +295,7 @@ alert(enabled.length);
 
 
 function removeRow(r){
-	console.log('Remove');
+	//console.log('Remove');
 	for(var i=1;i<=cols;i++){												// this for loop is responsible for the columns of the table
 			document.getElementById(""+r+","+i+"").disabled =true;
 			document.getElementById(""+r+","+i+"").style.visibility="hidden";
@@ -297,7 +304,7 @@ function removeRow(r){
 
 
 function fade(){
-	console.log('Fade');
+	//console.log('Fade');
 	for(var i=1;i<=cols;i++){
 		for(var j=1; j<=rows; j++){
 				document.getElementById(""+j+","+i+"").style.backgroundColor="gray";
@@ -306,7 +313,7 @@ function fade(){
 }
 
 function hightlight(start,end){
-		console.log('Hightligt');
+		//console.log('Hightligt');
 		for(var i=Math.round(start);i<=end;i++){
 			for(var j=1; j<=rows; j++){
 					document.getElementById(""+j+","+i+"").style.backgroundColor="white";
@@ -315,7 +322,7 @@ function hightlight(start,end){
 }
 
 function getAvailable(start,end){
-	console.log('Available');
+	//console.log('Available');
 		for(var i=1;i<=cols;i++){
 			for(var j=start; j<=rows; j++){
 					if(document.getElementById(""+j+","+i+"").style.backgroundColor="white"){
@@ -332,14 +339,45 @@ function getAvailable(start,end){
 }
 
 function talkPref(){
-	console.log('talk');
+	console.log('TIME TO TALK');
 	createMap();
 	for(var i=1; i<11; i++)
 		for(var j=1; j<21; j++)
 		{
-			console.log (' outpt '+i +'		'+j);
-			document.getElementById(""+i+","+j+"").innerText==M[i][j];
+			//console.log (' outpt '+i +'		'+j+ '	'+M[i][j]);
+			document.getElementById(""+i+","+j+"").innerText=M[i][j];
 		}
+		color(1);
+}
+
+function sleepPref(){
+	console.log('TIME TO SLEEP');
+	createMap();
+	color(0);
+}
+
+function color(isHigh){
+	var bomb=0;
+	for(var i=1; i<=rows; i++)
+		for(var j=1; j<=cols; j++)
+		{
+			if(bomb<M[i][j])
+				bomb=M[i][j];
+		}
+		console.log('bomb		'+bomb);
+		for(var i=1; i<=rows; i++)
+			for(var j=1; j<=cols; j++)
+			{
+				var c;
+				if(isHigh){
+					c=M[i][j]/bomb;
+				}
+				else{
+					c=1-M[i][j]/bomb;
+				}
+				document.getElementById(""+i+","+j+"").style.backgroundColor="rgba(0,255,0,"+c+")";
+			}
+			console.log('COLORED');
 }
 
 function nonePref(){
@@ -386,6 +424,11 @@ function createMap(){
 				d=5;
 				q1.enqueue(0);
 				map();
+				while(!q1.isEmpty())
+					q1.dequeue();
+				while(!q2.isEmpty())
+					q2.dequeue();
+				console.log(q1.isEmpty() + '	'+q2.isEmpty());
 			}
 		}
 }
@@ -393,18 +436,21 @@ function createMap(){
 function map(){
 	var i=q1.dequeue();
 	var j=q2.dequeue();
-	console.log(i+'		'+j);
+	V[i][j]=1;
+	//console.log(i+'		'+j);
 	var row = [-1, -1, -1,  0, 0,  1, 1, 1];
   var col = [-1,  0,  1, -1, 1, -1, 0, 1];
 	for (var k = 0; k < 8; k++)
         if (Check(i + row[k], j + col[k])){
-					M[i + row[k]][j+col[k]]=d;
+					M[i + row[k]][j+col[k]]+=d;
+					V[i + row[k]][j+col[k]]=1;
 					q1.enqueue(i + row[k]);
 					q2.enqueue(j+col[k]);
 				}
 	if(d==0)
 		return;
 	if(q1.peek()==0){
+		console.log(d);
 		d--;
 		q1.dequeue();
 		q1.enqueue(0);
@@ -413,5 +459,5 @@ function map(){
 }
 
 function Check(i,j){
-	return (i >= 0) && (i < rows) && (j >= 0) && (j < cols) && (!V[i][j]);
+	return (i >= 1) && (i <= rows) && (j >= 1) && (j <= cols) && (!V[i][j]);
 }
