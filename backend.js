@@ -34,7 +34,8 @@ app.get('/getSeatBookings', function (req, res) {
    	  //var dats = JSON.parse( data )
    	  console.log('dats[1]')
       console.log( data );
-      res.end( data );
+      //res.writeHead(200, {'Content-Type' : 'text/plain'});
+      res.json( data );
    });
 })
 
