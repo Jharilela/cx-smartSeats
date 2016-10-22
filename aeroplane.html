@@ -18,11 +18,12 @@
 			    }
 			    return vars;
 			}
+			console.log('params : ',getUrlVars().params)
 			console.log(parseInt(getUrlVars().seatCapacity));
 		</script>
 	</head>
 
-	<body onload='loadValue("2-4-2", 160);'>
+	<body onload='loadValue("2-4-2", parseInt(getUrlVars().seatCapacity));'>
 		<p align="center">
 		<!-- <button type="button" onClick="loadValue();">loadValue</button>	 -->
 		<input type="radio" name="pref" id="talk" onclick="talkPref()">Talk</input>
