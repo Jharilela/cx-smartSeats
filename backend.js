@@ -53,7 +53,7 @@ app.post('/addPassenger', function(req,res){
 	   }
 	   data = JSON.parse(data)
 	   console.log("Asynchronous read: " + typeof data + " -> ");
-	   console.log(data)
+	   console.log(data.passengerSeats)
 
 	   console.log("Data read successfully!, adding data");
 
