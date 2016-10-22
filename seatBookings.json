@@ -1,5 +1,5 @@
 {
-	"array": [{
+	"passangerSeats": [{
 			"seat": "1,1",
 			"talking": true
 		},
@@ -12,6 +12,33 @@
 		{
 			"seat": "7,12",
 			"talking": false
+		},
+		{
+			"seat" : "8,3",
+			"talking" : true
+		},
+		{
+			"seat" : "2,3",
+			"talking" : true
+		},
+		{
+			"seat" : "4,16",
+			"talking" : false
+		},
+		{
+			"seat" : "7,18",
+			"talking" : true
 		}
-	]
+		{
+			"seat" : "5, 13",
+			"talking" : false
+		}
+	],
+	"seatConfiguration" : "2-4-2",
+	"seatingPlan" : {
+		"firstClass" : 50,
+		"businessClass" : 60,
+		"premiumEconomy" : 37,
+		"economy" : 160,
+	}
 }

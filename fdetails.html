@@ -7,7 +7,7 @@
 <script>
 	var seatBookingsUrl = "http://35.160.243.26:8080/getSeatBookings"
 	$.get(seatBookingsUrl,function(data){
-		console.log(JSON.stringify(eval(data)));
+		console.log(JSON.parse(data).array);
 	})
 
 	$(document).ready(function(){
