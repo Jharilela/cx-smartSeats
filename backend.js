@@ -45,6 +45,9 @@ app.get('/getSeatBookings', function (req, res) {
 
 app.post('/addPassenger', function(req,res){
 	var dataReceived = req.query;
+	dataReceived.row = eval(dataReceived.row)
+	dataReceived.col = eval(dataReceived.col)
+	dataReceived.talking = eval(dataReceived.talking)
 	console.log(dataReceived)
 
 	fs.readFile(__dirname + "/" + "seatBookings.json", 'utf8', function (err, data) {
