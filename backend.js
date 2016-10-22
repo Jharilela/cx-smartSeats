@@ -68,7 +68,7 @@ app.post('/addPassenger', function(req,res){
 	      if (err) {
 	         return console.error(err);
 	      }
-	      
+	      console.log("write successful")
 	   });
 	});
 
