@@ -7,7 +7,7 @@
 <script>
 	var seatBookingsUrl = "http://35.160.243.26:8080/getSeatBookings"
 	$.get(seatBookingsUrl,function(data){
-		console.log(JSON.stringify(eval(data)));
+		console.log(JSON.parse(data));
 	})
 
 	$(document).ready(function(){
@@ -21,7 +21,7 @@
 			{
 				$.each(allData.data,function(index,element)
 				{
-					flightArray.push('<li class="collection-item"> <a href= "aeroplane.html?seatCapacity=' + element.seatCapacity+'">'+"Flight Number: "+ element.flightNumber+" Departure Time: "+element.scheduledDepartureTime+ " Arrival Time: "+element.scheduledDepartureTime+" Seat Capacity: "+element.seatCapacity+'</a></li>');
+					flightArray.push('<li class="collection-item"> <a href= "aeroplane.html?seatCapacity=' + element.seatCapacity+'&params='+params+'">'+"Flight Number: "+ element.flightNumber+" Departure Time: "+element.scheduledDepartureTime+ " Arrival Time: "+element.scheduledDepartureTime+" Seat Capacity: "+element.seatCapacity+'</a></li>');
 					$("#flightList").append( flightArray.join('') );
 				});
 			});

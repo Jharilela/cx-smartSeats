@@ -7,6 +7,7 @@
 // console.log("server running at http:/127.0.0.1:8081/");
 
 var express = require('express');
+var bodyParser = require('body-parser')
 var app = express();
 var fs = require("fs");
 
@@ -28,15 +29,25 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended : true
+}));
 
 app.get('/getSeatBookings', function (req, res) {
+	console.log('params')
+   	console.log(req.query)
    fs.readFile( __dirname + "/" + "seatBookings.json", 'utf8', function (err, data) {
-   	  //var dats = JSON.parse( data )
-   	  console.log('dats[1]')
-      console.log( data );
       res.writeHead(200, {'Content-Type' : 'text/plain'});
       res.end( data );
    });
+})
+
+app.post('/addPassenger', function(req,res){
+	var dataReceived = req.query;
+	console.log('dataReceived')
+	console.log(dataReceived)
+	res.end("data received")
 })
 
 var server = app.listen(8080, '0.0.0.0', function () {

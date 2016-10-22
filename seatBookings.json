@@ -1,17 +1,51 @@
 {
-	"array": [{
-			"seat": "1,1",
+	"passengerSeats": [{
+			"row": 1,
+			"col":1,
 			"talking": true
 		},
-
 		{
-			"seat": "5,5",
+			"row": 5,
+			"col":5,
 			"talking": true
 		},
-
 		{
-			"seat": "7,12",
+			"seat": 7,
+			"col" :12,
 			"talking": false
+		},
+		{
+			"row" : 8,
+			"col" : 3,
+			"talking" : true
+		},
+		{
+			"row" : 2,
+			"col" : 3,
+			"talking" : true
+		},
+		{
+			"row" : 4,
+			"col" : 16,
+			"talking" : false
+		},
+		{
+			"row" : 7,
+			"col" : 18,
+			"talking" : true
+		},
+		{
+			"row":5,
+			"col":13,
+			"talking" : false
 		}
-	]
+	],
+	"seatConfiguration" : "2-4-2",
+	"seatingPlan" : {
+		"firstClass" : 50,
+		"businessClass" : 60,
+		"premiumEconomy" : 37,
+		"economy" : 160,
+		"totalCapacity" : 307
+	}
 }
