@@ -304,9 +304,9 @@ function fade(){
 	}
 }
 
-function hightlight(start,c){
+function hightlight(start,end){
 		console.log('Hightligt');
-		for(var i=start;i<=c;i++){
+		for(var i=Math.round(start);i<=end;i++){
 			for(var j=1; j<=rows; j++){
 					document.getElementById(""+j+","+i+"").style.backgroundColor="white";
 			}
