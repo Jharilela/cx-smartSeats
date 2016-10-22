@@ -24,7 +24,7 @@ if(document.getElementById("rowsInput").value>0&&document.getElementById("colsIn
 }
 function loadValue(a, b){
 	console.log('a : ' + a);
-	console.log('b : '+ b;)
+	console.log('b : '+ b);
 	var sum=0;
 	var blocksPerRow = 0;
 
@@ -32,12 +32,12 @@ function loadValue(a, b){
 		var character = a.charAt(i)
 		if(character == "-"){
 			sum++;
-			removeRow(sum)
+			removeRow(sum);
 		}
 		else{
 			sum+=parseInt(character);
 			console.log('sum : '+sum)
-			
+
 		}
 	}
 }
@@ -273,4 +273,65 @@ function removeRow(r){
 			document.getElementById(""+r+","+i+"").disabled =true;
 			document.getElementById(""+r+","+i+"").style.visibility="hidden";
 		}
+}
+
+
+function fade(){
+	console.log('Fade');
+	for(var i=1;i<=cols;i++){
+		for(var j=1; j<=rows; j++){
+				document.getElementById(""+j+","+i+"").style.backgroundColor="gray";
+		}
+	}
+}
+
+function hightlight(start,c){
+		console.log('Hightligt');
+		for(var i=start;i<=c;i++){
+			for(var j=1; j<=rows; j++){
+					document.getElementById(""+j+","+i+"").style.backgroundColor="white";
+			}
+		}
+}
+
+function getAvailable(start,end){
+	console.log('Available');
+		for(var i=1;i<=cols;i++){
+			for(var j=start; j<=rows; j++){
+					if(document.getElementById(""+j+","+i+"").style.backgroundColor="white"){
+						if(j<=end){
+							return 0;
+						}
+						else{
+							return j-end;
+						}
+					}
+			}
+		}
+	return 0;
+}
+function babyPref(){
+	console.log('Baby');
+	var exp=getAvailable(1,cols/3);
+	fade();
+	hightlight(1,(cols/3)+exp);
+}
+
+function talkPref(){
+	console.log('talk');
+	var exp=getAvailable(cols/3,cols*2/3);
+	fade();
+	hightlight(cols*1/3,exp+(cols*2/3));
+}
+
+function sleepPref(){
+	console.log('sleep');
+	var exp=getAvailable(cols*2/3,cols);
+	fade();
+	hightlight(cols*2/3,cols+exp);
+}
+
+function nonePref(){
+	console.log('None');
+	hightlight(1,cols);
 }
