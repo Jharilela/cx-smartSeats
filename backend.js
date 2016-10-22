@@ -7,7 +7,7 @@
 // console.log("server running at http:/127.0.0.1:8081/");
 
 var express = require('express');
-// var bodyParser = require('body-parser')
+var bodyParser = require('body-parser')
 var app = express();
 var fs = require("fs");
 
@@ -29,10 +29,10 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-// app.use(bodyParser.json());
-// app.user(bodyParser.urlencoded({
-// 	extended : true
-// }));
+app.use(bodyParser.json());
+app.user(bodyParser.urlencoded({
+	extended : true
+}));
 
 app.get('/getSeatBookings', function (req, res) {
 	console.log('params')
@@ -47,6 +47,7 @@ app.post('/addPassenger', function(req,res){
 	var dataReceived = req.body;
 	console.log('dataReceived')
 	console.log(dataReceived)
+	res.end("data received")
 })
 
 var server = app.listen(8080, '0.0.0.0', function () {
