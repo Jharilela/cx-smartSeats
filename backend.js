@@ -30,9 +30,9 @@ app.use(function (req, res, next) {
 });
 
 app.get('/getSeatBookings', function (req, res) {
+	console.log('params')
+   	console.log(req.query)
    fs.readFile( __dirname + "/" + "seatBookings.json", 'utf8', function (err, data) {
-   	  console.log('params')
-   	  console.log(req.query)
       res.writeHead(200, {'Content-Type' : 'text/plain'});
       res.end( data );
    });

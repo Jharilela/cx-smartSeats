@@ -1,36 +1,42 @@
 {
 	"passengerSeats": [{
-			"seat": "1,1",
+			"row": 1,
+			"col":1,
 			"talking": true
 		},
-
 		{
-			"seat": "5,5",
+			"row": 5,
+			"col":5,
 			"talking": true
 		},
-
 		{
-			"seat": "7,12",
+			"seat": 7,
+			"col" :12,
 			"talking": false
 		},
 		{
-			"seat" : "8,3",
+			"row" : 8,
+			"col" : 3,
 			"talking" : true
 		},
 		{
-			"seat" : "2,3",
+			"row" : 2,
+			"col" : 3,
 			"talking" : true
 		},
 		{
-			"seat" : "4,16",
+			"row" : 4,
+			"col" : 16,
 			"talking" : false
 		},
 		{
-			"seat" : "7,18",
+			"row" : 7,
+			"col" : 18,
 			"talking" : true
 		},
 		{
-			"seat" : "5, 13",
+			"row":5,
+			"col":13,
 			"talking" : false
 		}
 	],
