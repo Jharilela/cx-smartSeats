@@ -339,11 +339,12 @@ function color(isHigh){
 				var c;
 				if(isHigh){
 					c=M[i][j]/bomb;
+					document.getElementById(""+i+","+j+"").style.backgroundColor="rgba(0,255,0,"+c+")";
 				}
 				else{
 					c=1-M[i][j]/bomb;
+					document.getElementById(""+i+","+j+"").style.backgroundColor="rgba(255,255,0,"+c+")";
 				}
-				document.getElementById(""+i+","+j+"").style.backgroundColor="rgba(0,255,0,"+c+")";
 			}
 			console.log('COLORED');
 }
