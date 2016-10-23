@@ -57,6 +57,7 @@ function bookedSeats(json){
 		}
 		console.log(seats[i].row +'	'+seats[i].col);
 		document.getElementById(""+seats[i].row+","+seats[i].col+"").innerText="X";
+		document.getElementById(""+seats[i].row+","+seats[i].col+"").disabled="true";
 		document.getElementById(""+seats[i].row+","+seats[i].col+"").style.fontSize = "30px";
 		if(seats[i].talking){
 			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="danger";
