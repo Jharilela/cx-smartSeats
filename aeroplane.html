@@ -31,7 +31,7 @@
 					loadValue(jsonData.seatConfiguration, economySeats);
 					bookedSeats(jsonData);
 					createMap();
-					console.log(jsonData);
+					//console.log(jsonData);
 				});
 
 			}
@@ -43,7 +43,7 @@
 		<div class="row">
 		<div class="col m2 teal lighten-3" style="height:100vh;">
 		<p >Please select your seating preferences</p>
-		<form action="#">
+		<form id="book" action="#">
 		<p>
 		<input name="group1" type="radio" id="talk" onclick="talkPref()"/>
 		<label  for="talk" class="black-text">I would like to talk</label>
@@ -56,6 +56,7 @@
 		<input name="group1" type="radio" id="none" onclick="nonePref()"/>
 		<label  for="none" class="black-text">No Preferences</label>
 		</p>
+		<button type="submit" id="submit">Book</button>
 		</div>
 		</form>
 		<div class="col m10">

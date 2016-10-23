@@ -36,7 +36,7 @@ function loadValue(a,b){
 		}
 
 		var columns = Math.round(b/seatsPerColumn);
-		console.log('total columns = '+columns)
+		//console.log('total columns = '+columns)
 		cols = columns;
 		createTable();
 
@@ -44,7 +44,7 @@ function loadValue(a,b){
 			var character = a.charAt(i)
 			if(character == "-"){
 				sum++;
-				console.log(sum);
+				//console.log(sum);
 				removeRow(sum);
 			}
 			else{
@@ -59,20 +59,26 @@ function loadValue(a,b){
 
 function bookedSeats(json){
 	var seats=json.passengerSeats;
-	console.log(seats);
+	//console.log(seats);
 	for(var i=0; i<seats.length; i++){
-		console.log(seats[i]);
-		console.log(seats[i].row+'		'+seats[i].col);
+		//console.log(seats[i]);
+		//console.log(seats[i].row+'		'+seats[i].col);
 		if(typeof seats[i].row == "undefined" || typeof seats[i].col == "undefined")
 		{
 			console.log('EROOR');
 			continue;
 		}
 		document.getElementById(""+seats[i].row+","+seats[i].col+"").innerText="X";
-		if(seats[i].talking)
+		if(seats[i].talking){
 			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="danger";
-		else
+			//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.border="solid red";
+		}
+		else{
+			console.log('safe	'+seats[i].row+ '		'+seats[i].col);
 			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="safe";
+			//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.backgroundColor="red";
+			//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.border="solid";
+		}
 	}
 }
 function ifButtonIsPressed()													//this function is loaded when the user clicks on any button while choosing seats for the new table
@@ -404,7 +410,7 @@ function start(){
 }
 
 function resetVisited(){
-	console.log(rows + '	' + cols);
+	//console.log(rows + '	' + cols);
 	for(var i=1; i<11; i++)
 		for(var j=1; j<21; j++){
 			//console.log(i +'	'+j);
@@ -419,8 +425,7 @@ var q1=new Queue(), q2=new Queue(), d;
 function createMap(){
 	for(var i=1; i<rows; i++)
 		for(var j=1; j<cols; j++){
-			console.log( i + '	' + j);
-			if(document.getElementById(""+i+","+j+"").className == "danger")
+			if(document.getElementById(""+i+","+j+"").className == "danger" && document.getElementById(""+i+","+j+"").style.visibility !="hidden")
 			{
 				resetVisited();
 				M[i][j]+=6;
@@ -433,7 +438,7 @@ function createMap(){
 					q1.dequeue();
 				while(!q2.isEmpty())
 					q2.dequeue();
-				console.log(q1.isEmpty() + '	'+q2.isEmpty());
+				//console.log(q1.isEmpty() + '	'+q2.isEmpty());
 			}
 		}
 }
@@ -455,7 +460,7 @@ function map(){
 	if(d==0)
 		return;
 	if(q1.peek()==0){
-		console.log(d);
+		//console.log(d);
 		d--;
 		q1.dequeue();
 		q1.enqueue(0);
