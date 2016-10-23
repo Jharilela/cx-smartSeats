@@ -62,6 +62,12 @@ function bookedSeats(json){
 	console.log(seats);
 	for(var i=0; i<seats.length; i++){
 		console.log(seats[i]);
+		console.log(seats[i].row+'		'+seats[i].col);
+		if(typeof seats[i].row == "undefined" || typeof seats[i].col == "undefined")
+		{
+			console.log('EROOR');
+			continue;
+		}
 		document.getElementById(""+seats[i].row+","+seats[i].col+"").innerText="X";
 		if(seats[i].talking)
 			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="danger";
@@ -296,7 +302,7 @@ alert(enabled.length);
 function removeRow(r){
 	//console.log('Remove');
 	for(var i=1;i<=cols;i++){												// this for loop is responsible for the columns of the table
-			console.log(r+'	'+i);
+			//console.log(r+'	'+i);
 			document.getElementById(""+r+","+i+"").disabled =true;
 			document.getElementById(""+r+","+i+"").style.visibility="hidden";
 		}
