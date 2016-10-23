@@ -8,6 +8,8 @@ People who prefer to rest, read a book, watch a movie or do things in silence, w
 We use Breadth First Search (BFS) to produce heat maps of areas filled with talkative and silent people
 
 ![original screen](https://raw.githubusercontent.com/Jharilela/cx-smartSeats/master/screenshots/screen-original.png)
+This is the original seat layout of the passanger flight
+X indicates taken, empty indicates 
 
 ![talkative screen](https://raw.githubusercontent.com/Jharilela/cx-smartSeats/master/screenshots/screen-talkative.png)
 
