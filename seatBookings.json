@@ -10,12 +10,12 @@
 			"talking": true
 		},
 		{
-			"seat": 7,
+			"row": 7,
 			"col" :12,
 			"talking": false
 		},
 		{
-			"row" : 8,
+			"row" : 9,
 			"col" : 3,
 			"talking" : true
 		},

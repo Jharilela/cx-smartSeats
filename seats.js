@@ -266,13 +266,6 @@ function removePrePostText(){													// function to check if seats has been
 	document.getElementById("postTable").innerHTML ="";
 	}
 }
-function seeLeft(){
-	//console.log('seeing left')
-}
-function seeRight(){
-	//console.log('seeing right')
-}
-
 
 function reset()																//rebuild the table
 {
@@ -460,4 +453,16 @@ function map(){
 
 function Check(i,j){
 	return (i >= 1) && (i <= rows) && (j >= 1) && (j <= cols) && (!V[i][j]);
+}
+
+function addPassenger(row, col, talking){
+	var params = {
+		row : row,
+		col : col,
+		talking : talking
+	}
+	$.post("http://35.160.243.26:8080/addPassenger?"+$.param(params),function(status)
+	{
+		console.log('adding passenger to cloud : '+status)
+	});
 }
