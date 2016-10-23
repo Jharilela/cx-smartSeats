@@ -69,6 +69,7 @@ function bookedSeats(json){
 			continue;
 		}
 		document.getElementById(""+seats[i].row+","+seats[i].col+"").innerText="X";
+		document.getElementById(""+seats[i].row+","+seats[i].col+"").style.fontSize = "100%";
 		if(seats[i].talking){
 			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="danger";
 			//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.border="solid red";
@@ -131,7 +132,7 @@ function createTable()															//creates the table
 			for(var j=1;j<=cols;j++){
 																				//creates a table with rows and cols defined by the user
 				document.getElementById("table").innerHTML +="<td>";
-				document.getElementById("table").innerHTML +="<button style='height:50px;width:50px;padding:17px;' id='"+i+","+j+"' onClick='combine("+(""+i+","+j+"")+");ifButtonIsPressed();'> </button>";
+				document.getElementById("table").innerHTML +="<button style='height:50px;width:50px;padding-top:30px;' id='"+i+","+j+"' onClick='combine("+(""+i+","+j+"")+");ifButtonIsPressed();'> </button>";
 				document.getElementById("table").innerHTML +="</td>";
 																				//creates a button with fixed size. When clicked, it loads ifButtonIsPress()
 		    document.getElementById(""+i+","+j+"").style.backgroundColor ="white";
