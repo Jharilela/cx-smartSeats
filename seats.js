@@ -24,17 +24,9 @@ if(document.getElementById("rowsInput").value>0&&document.getElementById("colsIn
 	reset();   																	// rebuilds the table
 	}
 }
-function loadValue(){
+function loadValue(a,b){
 	start();
-	var seatsPerColumn = 0;
-	var seatBookingsUrl = "http://35.160.243.26:8080/getSeatBookings"
-	$.get(seatBookingsUrl,function(data){
-		var sum=0;
-		var json=JSON.parse(data);
-		console.log(JSON.parse(data))	;
-		var a=json.seatConfiguration;
-		var b=json.seatingPlan.economy;
-		console.log(a+'		'+b);
+	var seatsPerColumn = 0,sum=0;
 
 		for (var i = 0; i<a.length;i++){
 			var character = a.charAt(i)
@@ -52,6 +44,7 @@ function loadValue(){
 			var character = a.charAt(i)
 			if(character == "-"){
 				sum++;
+				console.log(sum);
 				removeRow(sum);
 			}
 			else{
@@ -60,16 +53,22 @@ function loadValue(){
 				//console.log('sum : '+sum)
 			}
 		}
-		var seats=json.passengerSeats;
-		console.log(seats);
-		for(var i=0; i<seats.length; i++){
-			console.log(seats[i]);
-		}
+
 		// Block seats and plant bombs
-	})
-	createMap();
 }
 
+function bookedSeats(json){
+	var seats=json.passengerSeats;
+	console.log(seats);
+	for(var i=0; i<seats.length; i++){
+		console.log(seats[i]);
+		document.getElementById(""+seats[i].row+","+seats[i].col+"").innerText="X";
+		if(seats[i].talking)
+			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="danger";
+		else
+			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="safe";
+	}
+}
 function ifButtonIsPressed()													//this function is loaded when the user clicks on any button while choosing seats for the new table
 {
 if(editable==true)
@@ -297,6 +296,7 @@ alert(enabled.length);
 function removeRow(r){
 	//console.log('Remove');
 	for(var i=1;i<=cols;i++){												// this for loop is responsible for the columns of the table
+			console.log(r+'	'+i);
 			document.getElementById(""+r+","+i+"").disabled =true;
 			document.getElementById(""+r+","+i+"").style.visibility="hidden";
 		}
