@@ -73,18 +73,23 @@ function bookedSeats(json){
 function ifButtonIsPressed(i,j)													//this function is loaded when the user clicks on any button while choosing seats for the new table
 {
 		// Book function
-		if(document.getElementById(""+i+","+j+"").style.border =="solid blue")
-			document.getElementById(""+i+","+j+"").style.border="solid black";
+		console.log(document.getElementById(""+i+","+j+"").style.border);
+		if(document.getElementById(""+i+","+j+"").style.border =="5px solid red"){
+			document.getElementById(""+i+","+j+"").style.border="2px solid black";
+			document.getElementById(""+i+","+j+"").style.bottom="0px";
+		}
 		else {
 			console.log('Blue');
-			document.getElementById(""+i+","+j+"").style.border="solid blue";
+			document.getElementById(""+i+","+j+"").style.border="5px solid red";
+			document.getElementById(""+i+","+j+"").style.position = "relative";
+			document.getElementById(""+i+","+j+"").style.bottom="3px";
 		}
 }
 
 function Book(){
 	for(var i=1;i<=rows;i++){
 			for(var j=1;j<=cols;j++){
-				if(document.getElementById(""+i+","+j+"").style.border =="solid blue"){
+				if(document.getElementById(""+i+","+j+"").style.border =="5px solid red"){
 					if(checked == 'T')
 						addPassenger(i,j,true);
 					else {
@@ -104,7 +109,7 @@ function createTable()															//creates the table
 			for(var j=1;j<=cols;j++){
 																				//creates a table with rows and cols defined by the user
 				document.getElementById("table").innerHTML +="<td>";
-				document.getElementById("table").innerHTML +="<button style='height:50px;width:50px;padding-top:30px; border:solid black;' id='"+i+","+j+"' onClick='ifButtonIsPressed("+i+","+j+")'> </button>";
+				document.getElementById("table").innerHTML +="<button style='height:50px;width:50px;padding-top:30px; border:solid black; border-width:2px;' id='"+i+","+j+"' onClick='ifButtonIsPressed("+i+","+j+")'> </button>";
 				document.getElementById("table").innerHTML +="</td>";
 																				//creates a button with fixed size. When clicked, it loads ifButtonIsPress()
 		    document.getElementById(""+i+","+j+"").style.backgroundColor ="white";
