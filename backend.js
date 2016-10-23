@@ -7,6 +7,7 @@
 // console.log("server running at http:/127.0.0.1:8081/");
 
 var express = require('express');
+var bodyParser = require('body-parser')
 var app = express();
 var fs = require("fs");
 
@@ -28,15 +29,50 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended : true
+}));
 
 app.get('/getSeatBookings', function (req, res) {
+	console.log('params')
+   	console.log(req.query)
    fs.readFile( __dirname + "/" + "seatBookings.json", 'utf8', function (err, data) {
-   	  //var dats = JSON.parse( data )
-   	  console.log('dats[1]')
-      console.log( data );
       res.writeHead(200, {'Content-Type' : 'text/plain'});
       res.end( data );
    });
+})
+
+app.post('/addPassenger', function(req,res){
+	var dataReceived = req.query;
+	dataReceived.row = eval(dataReceived.row)
+	dataReceived.col = eval(dataReceived.col)
+	dataReceived.talking = eval(dataReceived.talking)
+	console.log(dataReceived)
+
+	fs.readFile(__dirname + "/" + "seatBookings.json", 'utf8', function (err, data) {
+	   if (err) {
+	      return console.error(err);
+	   }
+	   data = JSON.parse(data)
+	   console.log("Asynchronous read: " + typeof data + " -> ");
+	   console.log(data.passengerSeats[0])
+
+	   console.log("Data read successfully!, adding data");
+
+	   data.passengerSeats.push(dataReceived);
+	   console.log('new data')
+	   console.log(data)
+	   console.log("Let's write newly written data");
+	   fs.writeFile(__dirname + "/" + "seatBookings.json", JSON.stringify(data),  function(err) {
+	      if (err) {
+	         return console.error(err);
+	      }
+	      console.log("write successful")
+	   });
+	});
+
+	res.end("data received")
 })
 
 var server = app.listen(8080, '0.0.0.0', function () {
