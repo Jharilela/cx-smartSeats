@@ -27,9 +27,12 @@
 				{
 					var jsonData= JSON.parse(allData);
 					economySeats=jsonData.seatingPlan.economy;
-					console.log(typeof economySeats);
-					addPassenger(2, 1, true)
-					loadValue("2-4-2", economySeats);
+
+					console.log(economySeats);
+					loadValue(jsonData.seatConfiguration, economySeats);
+					bookedSeats(jsonData);
+					createMap();
+					//console.log(jsonData);
 				});
 
 			}
