@@ -414,7 +414,7 @@ function createMap(){
 	for(var i=1; i<rows; i++)
 		for(var j=1; j<cols; j++){
 			console.log( i + '	' + j);
-			if(document.getElementById(""+i+","+j+"").innerText == 'B')
+			if(document.getElementById(""+i+","+j+"").className == "danger")
 			{
 				resetVisited();
 				M[i][j]+=6;
