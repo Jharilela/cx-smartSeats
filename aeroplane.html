@@ -5,7 +5,11 @@
 
 		<script type="text/javascript" src="seats.js"></script>
 		<script type="text/javascript" src="Queue.js"></script>
-		<script >
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+		</script>
+		<script>
+		
+
 			function getUrlVars()
 			{
 			    var vars = [], hash;
@@ -22,7 +26,7 @@
 		</script>
 	</head>
 
-	<body onload='loadValue("2-4-2", parseInt(getUrlVars().seatCapacity));'>
+	<body onload='loadValue();'>
 		<p align="center">
 		<!-- <button type="button" onClick="loadValue();">loadValue</button>	 -->
 		<input type="radio" name="pref" id="talk" onclick="talkPref()">Talk</input>
