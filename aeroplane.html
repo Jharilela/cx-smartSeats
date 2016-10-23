@@ -27,8 +27,8 @@
 				{
 					var jsonData= JSON.parse(allData);
 					economySeats=jsonData.seatingPlan.economy;
-					console.log(typeof economySeats);
-					loadValue("2-4-2", economySeats);
+					console.log(jsonData);
+					loadValue(jsonData.seatConfiguration, economySeats);
 				});
 				
 			}
