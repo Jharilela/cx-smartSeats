@@ -8,7 +8,7 @@
 		</script>
 		<title> Aeroplane </title>
 		<script >
-			function getParameterByName(name, url) 
+			function getParameterByName(name, url)
 			{
 			    if (!url) {
 			      url = window.location.href;
@@ -31,7 +31,7 @@
 					addPassenger(2, 1, true)
 					loadValue("2-4-2", economySeats);
 				});
-				
+
 			}
 		</script>
 	</head>
@@ -39,24 +39,25 @@
 	<body onload='getSeats();'>
 		<!-- <button type="button" onClick="loadValue();">loadValue</button>	 -->
 		<div class="row">
-		<div class="col m4 teal lighten-4" style="height:100vh;">
+		<div class="col m2 teal lighten-3" style="height:100vh;">
 		<p >Please select your seating preferences</p>
-		<form action="#">
+		<form id="book" action="#">
 		<p>
 		<input name="group1" type="radio" id="talk" onclick="talkPref()"/>
-		<label  for="talk">I would like to talk</label>
+		<label  for="talk" class="black-text">I would like to talk</label>
 		</p>
 		<p>
 		<input name="group1" type="radio" id="sleep" onclick="sleepPref()"/>
-		<label  for="sleep">I would like to sleep</label>
+		<label  for="sleep" class="black-text">I would like to sleep</label>
 		</p>
 		<p>
 		<input name="group1" type="radio" id="none" onclick="nonePref()"/>
-		<label  for="none">No Preferences</label>
+		<label  for="none" class="black-text">No Preferences</label>
 		</p>
+		<button type="submit" id="submit">Book</button>
 		</div>
 		</form>
-		<div class="col m8">
+		<div class="col m10">
 		<p align="center" id="table">														<!-- where the table is inserted-->
 		</p>
 		</div>

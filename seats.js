@@ -24,46 +24,64 @@ if(document.getElementById("rowsInput").value>0&&document.getElementById("colsIn
 	reset();   																	// rebuilds the table
 	}
 }
-function loadValue(a, b){
+function loadValue(a,b){
 	start();
-	//console.log('a : ' + a);
-	//console.log('b : '+ b);
-	var sum=0;
-	var seatsPerColumn = 0;
+	var seatsPerColumn = 0,sum=0;
 
-	for (var i = 0; i<a.length;i++){
-		var character = a.charAt(i)
-		if(character != "-"){
-			seatsPerColumn+=parseInt(character)
+		for (var i = 0; i<a.length;i++){
+			var character = a.charAt(i)
+			if(character != "-"){
+				seatsPerColumn+=parseInt(character)
+			}
 		}
-	}
 
-	var columns = Math.round(b/seatsPerColumn);
-	console.log('total columns = '+columns)
-	cols = columns;
-	createTable();
+		var columns = Math.round(b/seatsPerColumn);
+		//console.log('total columns = '+columns)
+		cols = columns;
+		createTable();
 
-	for (var i = 0; i<a.length;i++){
-		var character = a.charAt(i)
-		if(character == "-"){
-			sum++;
-			removeRow(sum);
+		for (var i = 0; i<a.length;i++){
+			var character = a.charAt(i)
+			if(character == "-"){
+				sum++;
+				//console.log(sum);
+				removeRow(sum);
+			}
+			else{
+				sum+=parseInt(character);
+				seatsPerColumn+=parseInt(character)
+				//console.log('sum : '+sum)
+			}
 		}
-		else{
-			sum+=parseInt(character);
-			seatsPerColumn+=parseInt(character)
-			//console.log('sum : '+sum)
-		}
-	}
-	document.getElementById(""+4+","+4+"").innerText='B';
-	document.getElementById(""+4+","+4+"").style.backgroundColor="gray";
-	document.getElementById(""+4+","+2+"").innerText='B';
-	document.getElementById(""+4+","+2+"").style.backgroundColor="gray";
-	document.getElementById(""+5+","+5+"").innerText='B';
-	document.getElementById(""+5+","+5+"").style.backgroundColor="gray";
 
+		// Block seats and plant bombs
 }
 
+function bookedSeats(json){
+	var seats=json.passengerSeats;
+	//console.log(seats);
+	for(var i=0; i<seats.length; i++){
+		//console.log(seats[i]);
+		//console.log(seats[i].row+'		'+seats[i].col);
+		if(typeof seats[i].row == "undefined" || typeof seats[i].col == "undefined")
+		{
+			console.log('EROOR');
+			continue;
+		}
+		document.getElementById(""+seats[i].row+","+seats[i].col+"").innerText="X";
+		document.getElementById(""+seats[i].row+","+seats[i].col+"").style.fontSize = "100%";
+		if(seats[i].talking){
+			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="danger";
+			//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.border="solid red";
+		}
+		else{
+			console.log('safe	'+seats[i].row+ '		'+seats[i].col);
+			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="safe";
+			//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.backgroundColor="red";
+			//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.border="solid";
+		}
+	}
+}
 function ifButtonIsPressed()													//this function is loaded when the user clicks on any button while choosing seats for the new table
 {
 if(editable==true)
@@ -107,28 +125,22 @@ document.getElementById("insert").innerHTML+=('<br><button onClick="insertInput(
 
 function createTable()															//creates the table
 {
-document.getElementById("table").innerHTML +="<p align='center'><br>";
-document.getElementById("table").innerHTML +="<table>";
-for(var i=1;i<=rows;i++)
-	{
-	document.getElementById("table").innerHTML +="<tr>";
-	for(var j=1;j<=cols;j++)
-		{
+	document.getElementById("table").innerHTML +="<p align='center'><br>";
+	document.getElementById("table").innerHTML +="<table>";
+	for(var i=1;i<=rows;i++){
+			document.getElementById("table").innerHTML +="<tr>";
+			for(var j=1;j<=cols;j++){
 																				//creates a table with rows and cols defined by the user
-		document.getElementById("table").innerHTML +="<td>";
-		document.getElementById("table").innerHTML +="<button style='height:50px;width:50px;padding:17px;' id='"+i+","+j+"' onClick='combine("+(""+i+","+j+"")+");ifButtonIsPressed();'> </button>";
-		document.getElementById("table").innerHTML +="</td>";
+				document.getElementById("table").innerHTML +="<td>";
+				document.getElementById("table").innerHTML +="<button style='height:50px;width:50px;padding-top:30px;' id='"+i+","+j+"' onClick='combine("+(""+i+","+j+"")+");ifButtonIsPressed();'> </button>";
+				document.getElementById("table").innerHTML +="</td>";
 																				//creates a button with fixed size. When clicked, it loads ifButtonIsPress()
-		document.getElementById(""+i+","+j+"").disabled = false;
-		if(editable==true||changed==true)										//if the user has created a new table, the seats are gray in color
-		document.getElementById(""+i+","+j+"").style.backgroundColor ="gray";
-		else																	// if we are creating a default table, the seats are gray in color
-		document.getElementById(""+i+","+j+"").style.backgroundColor ="white";
+		    document.getElementById(""+i+","+j+"").style.backgroundColor ="white";
 		}
-	document.getElementById("table").innerHTML +="</tr><br>";
+		document.getElementById("table").innerHTML +="</tr><br>";
 	}
-document.getElementById("table").innerHTML +="</table>";
-document.getElementById("table").innerHTML +="</p>";
+	document.getElementById("table").innerHTML +="</table>";
+	document.getElementById("table").innerHTML +="</p>";
 }
 
 
@@ -136,7 +148,7 @@ document.getElementById("table").innerHTML +="</p>";
 function chooseArea()															//enables selected seats by the user and makes them visible
 {
 
-if(false)																//checks if seat orientation has noot been modified
+if(false)																//checks if seat orientation has noonot been modified
 	{
 	enabled=["1,1","1,2","1,3","1,5","1,6","1,7","1,8","1,10","1,11","1,13","1,14","1,15"
 	,"2,1","2,2","2,3","2,5","2,6","2,7","2,8","2,10","2,11","2,13","2,14","2,15"
@@ -290,6 +302,7 @@ alert(enabled.length);
 function removeRow(r){
 	//console.log('Remove');
 	for(var i=1;i<=cols;i++){												// this for loop is responsible for the columns of the table
+			//console.log(r+'	'+i);
 			document.getElementById(""+r+","+i+"").disabled =true;
 			document.getElementById(""+r+","+i+"").style.visibility="hidden";
 		}
@@ -333,19 +346,18 @@ function getAvailable(start,end){
 
 function talkPref(){
 	console.log('TIME TO TALK');
-	createMap();
-	for(var i=1; i<11; i++)
-		for(var j=1; j<21; j++)
-		{
-			//console.log (' outpt '+i +'		'+j+ '	'+M[i][j]);
-			document.getElementById(""+i+","+j+"").innerText=M[i][j];
-		}
+	// for(var i=1; i<11; i++)
+	// 	for(var j=1; j<21; j++)
+	// 	{
+	// 		//console.log (' outpt '+i +'		'+j+ '	'+M[i][j]);
+	// 		document.getElementById(""+i+","+j+"").innerText=M[i][j];
+	// 	}
 		color(1);
 }
 
 function sleepPref(){
 	console.log('TIME TO SLEEP');
-	createMap();
+	//createMap();
 	color(0);
 }
 
@@ -392,7 +404,7 @@ function start(){
 }
 
 function resetVisited(){
-	console.log(rows + '	' + cols);
+	//console.log(rows + '	' + cols);
 	for(var i=1; i<11; i++)
 		for(var j=1; j<21; j++){
 			//console.log(i +'	'+j);
@@ -405,10 +417,9 @@ function Queue(){var a=[],b=0;this.getLength=function(){return a.length-b};this.
 
 var q1=new Queue(), q2=new Queue(), d;
 function createMap(){
-	for(var i=1; i<11; i++)
-		for(var j=1; j<21; j++){
-			//console.log( i + '	' + j);
-			if(document.getElementById(""+i+","+j+"").innerText == 'B')
+	for(var i=1; i<rows; i++)
+		for(var j=1; j<cols; j++){
+			if(document.getElementById(""+i+","+j+"").className == "danger" && document.getElementById(""+i+","+j+"").style.visibility !="hidden")
 			{
 				resetVisited();
 				M[i][j]+=6;
@@ -421,7 +432,7 @@ function createMap(){
 					q1.dequeue();
 				while(!q2.isEmpty())
 					q2.dequeue();
-				console.log(q1.isEmpty() + '	'+q2.isEmpty());
+				//console.log(q1.isEmpty() + '	'+q2.isEmpty());
 			}
 		}
 }
@@ -443,7 +454,7 @@ function map(){
 	if(d==0)
 		return;
 	if(q1.peek()==0){
-		console.log(d);
+		//console.log(d);
 		d--;
 		q1.dequeue();
 		q1.enqueue(0);
