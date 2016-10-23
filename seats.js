@@ -57,7 +57,7 @@ function bookedSeats(json){
 		}
 		console.log(seats[i].row +'	'+seats[i].col);
 		document.getElementById(""+seats[i].row+","+seats[i].col+"").innerText="X";
-		//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.fontSize = "100%";
+		document.getElementById(""+seats[i].row+","+seats[i].col+"").style.fontSize = "100%";
 		if(seats[i].talking){
 			document.getElementById(""+seats[i].row+","+seats[i].col+"").className="danger";
 			//document.getElementById(""+seats[i].row+","+seats[i].col+"").style.border="solid red";
@@ -70,20 +70,21 @@ function bookedSeats(json){
 		}
 	}
 }
-function ifButtonIsPressed()													//this function is loaded when the user clicks on any button while choosing seats for the new table
+function ifButtonIsPressed(i,j)													//this function is loaded when the user clicks on any button while choosing seats for the new table
 {
 		// Book function
-		if(document.getElementById(this).style.border =="solid blue")
-			document.getElementById(this).style.border="solid black";
+		if(document.getElementById(""+i+","+j+"").style.border =="solid blue")
+			document.getElementById(""+i+","+j+"").style.border="solid black";
 		else {
-			document.getElementById(this).style.background="solid blue";
+			console.log('Blue');
+			document.getElementById(""+i+","+j+"").style.border="solid blue";
 		}
 }
 
 function Book(){
 	for(var i=1;i<=rows;i++){
 			for(var j=1;j<=cols;j++){
-				if(document.getElementById(this).style.border =="solid blue"){
+				if(document.getElementById(""+i+","+j+"").style.border =="solid blue"){
 					if(checked == 'T')
 						addPassenger(i,j,true);
 					else {
@@ -103,7 +104,7 @@ function createTable()															//creates the table
 			for(var j=1;j<=cols;j++){
 																				//creates a table with rows and cols defined by the user
 				document.getElementById("table").innerHTML +="<td>";
-				document.getElementById("table").innerHTML +="<button style='height:50px;width:50px;padding-top:30px; border:solid black;' id='"+i+","+j+"' onClick='combine("+(""+i+","+j+"")+");ifButtonIsPressed();'> </button>";
+				document.getElementById("table").innerHTML +="<button style='height:50px;width:50px;padding-top:30px; border:solid black;' id='"+i+","+j+"' onClick='ifButtonIsPressed("+i+","+j+")'> </button>";
 				document.getElementById("table").innerHTML +="</td>";
 																				//creates a button with fixed size. When clicked, it loads ifButtonIsPress()
 		    document.getElementById(""+i+","+j+"").style.backgroundColor ="white";
